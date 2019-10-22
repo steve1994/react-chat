@@ -8,7 +8,8 @@
     "react-dom": "^16.10.2",
     "react-markdown": "^4.2.2",
     "react-scripts": "3.2.0",
-    "remarkable-react": "^1.4.1"
+    "remarkable-react": "^1.4.1",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

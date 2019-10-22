@@ -30,7 +30,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3001');
+var port = normalizePort(process.env.PORT || '3002');
 app.set('port', port);
 
 /**
@@ -39,8 +39,18 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+var io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+    socket.on('addNewChat', function (msg) {
+        socket.broadcast.emit('newChat',msg);
+    }).on('deleteNewChat', function (msg) {
+        socket.broadcast.emit('deleteChat',msg);
+    })
+})
+
 /**
- * Listen on provided port, on all network interfaces.
+ * Listen on provided port, oan all network interfaces.
  */
 
 server.listen(port);

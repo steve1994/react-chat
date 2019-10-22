@@ -3,8 +3,8 @@ import ChatList from './ChatList';
 import FormChat from './FormChat';
 
 const axios = require('axios');
-
-const apiUrl = "http://localhost:3001/api/chat/"
+const apiUrl = "http://localhost:3002/api/chat/"
+const socket = require('socket.io-client')('http://localhost:3002');
 
 export default class OneWindow extends React.Component {
     constructor(props) {
@@ -17,6 +17,12 @@ export default class OneWindow extends React.Component {
     }
 
     componentDidMount() {
+        socket.on('newChat',(msg) => {
+            this.loadChatsMessage();
+        })
+        socket.on('deleteChat',(msg) => {
+            this.loadChatsMessage();
+        })
         this.loadChatsMessage();
     }
 
@@ -42,6 +48,7 @@ export default class OneWindow extends React.Component {
         })
         .then(response => {
             this.setState({chats:[...this.state.chats,{id:response.data.data._id,name,message}]})
+            socket.emit('addNewChat',{id:response.data.data._id,name,message});
         })
         .catch(error => {
             this.setState({chats:[...this.state.chats,{id:this.state.counterFail+1,name,message,resend:true}],counterFail:this.state.counterFail+1})
@@ -52,7 +59,7 @@ export default class OneWindow extends React.Component {
         this.setState((state) => ({chats:state.chats.filter(item => {return item.id !== id})}))
         axios.delete(apiUrl+id)
         .then(response => {
-            // Do Nothing
+            socket.emit('deleteNewChat',response.data);
         })
         .catch(error => {
             alert(error);
