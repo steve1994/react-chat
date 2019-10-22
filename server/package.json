@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "mocha --timeout 10000"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "mocha": "^6.2.2",
+    "mongoose": "^5.7.5",
+    "morgan": "~1.9.1",
+    "nodemon": "^1.19.4"
+  }
+}
