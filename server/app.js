@@ -5,8 +5,10 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var chatRouter = require('./routes/chats');
+var cors = require('cors');
 
 var app = express();
+app.use(cors());
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/react-chat-db', {useNewUrlParser: true});

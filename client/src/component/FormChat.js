@@ -4,7 +4,7 @@ export default class FormChat extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {name : "", message : "", counter : 0};
+        this.state = {name : "", message : ""};
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeMessage = this.handleChangeMessage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -23,8 +23,8 @@ export default class FormChat extends React.Component {
         if (!this.state.name || !this.state.message) {
             return;
         }
-        this.props.onSave(this.state.counter, this.state.name,this.state.message);
-        this.setState({name:'',message:'',counter:this.state.counter+1});
+        this.props.onSave(this.state.name,this.state.message);
+        this.setState({name:'',message:''});
     }
 
     render() {

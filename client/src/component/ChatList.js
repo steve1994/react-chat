@@ -9,7 +9,7 @@ export default class ChatList extends React.Component {
 
     render() {
         let listNode = this.props.datas.map((item) => {
-                          return (<ChatItem id={item.id} name={item.name} text={item.message} onDelete={this.props.onDelete} />);
+                          return (<ChatItem id={item.id} name={item.name} text={item.message} onDelete={this.props.onDelete} isResend={item.resend} resendMethod={this.props.onResend} />);
                        });
         return (
             <div>

@@ -27,7 +27,7 @@ router.post('/', function(req,res) {
 
 router.delete('/:idChat', function (req,res) {
     let id = req.params.idChat;
-    Chat.findOneAndDelete({'_id':id},function (err, response) {
+    Chat.findOneAndDelete({_id:id},function (err, response) {
         if (err) {
             res.status(400).json({success:false,message:err});
         } else {
